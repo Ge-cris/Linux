@@ -1,0 +1,16 @@
+#include <iostream>
+#include <sys/resource.h>
+
+int main() {
+    rlimit rlim;
+    int result = getrlimit(RLIMIT_STACK, &rlim);
+    
+    if (result == 0) {
+        std::cout << "Current stack size limit: " << rlim.rlim_cur << std::endl;
+        std::cout << "Maximum stack size limit: " << rlim.rlim_max << std::endl;
+    } else {
+        std::cerr << "Error retrieving stack size limit." << std::endl;
+    }
+    
+    return 0;
+}
